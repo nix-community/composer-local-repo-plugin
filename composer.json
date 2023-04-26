@@ -1,0 +1,21 @@
+{
+    "name": "drupol/composer-local-repo-plugin",
+    "description": "",
+    "license": "MIT",
+    "type": "composer-plugin",
+    "homepage": "https://todo.com",
+    "require": {
+        "composer-plugin-api": "^2"
+    },
+    "require-dev": {
+        "composer/composer": "^2.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "loophp\\ComposerLocalRepoPlugin\\": "./src/"
+        }
+    },
+    "extra": {
+        "class": "loophp\\ComposerLocalRepoPlugin\\Plugin"
+    }
+}
