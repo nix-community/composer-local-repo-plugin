@@ -21,8 +21,8 @@ final class BuildLocalRepo extends BaseCommand
         $this
             ->setName('build-local-repo')
             ->setDescription('Create local composer repositories for offline use')
-            ->addArgument('repo-dir', InputArgument::REQUIRED, 'Target directory to create repo in');
-
+            ->addArgument('repo-dir', InputArgument::REQUIRED, 'Target directory to create repo in')
+            ->addArgument('no-dev', InputArgument::OPTIONAL, 'Should we disable packages from `require-dev` ?', false);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -31,7 +31,7 @@ final class BuildLocalRepo extends BaseCommand
         $downloadManager = $composer->getDownloadManager();
 
         $packages = [];
-        foreach ($this->iterLockedPackages() as $package) {
+        foreach ($this->iterLockedPackages($input) as $package) {
             $packages[$package->getPrettyName()] = [
                 $package->getPrettyVersion() => [
                     'name' => $package->getPrettyName(),
@@ -56,7 +56,9 @@ final class BuildLocalRepo extends BaseCommand
                     sprintf('%s/%s/%s', $input->getArgument('repo-dir'), $package->getName(), $package->getPrettyVersion()),
                 )
                 ->then(
-                    $output->writeln('Package has been downloaded correctly.')
+                    $output->writeln(
+                        sprintf('Package %s has been downloaded...', $package->getPrettyName())
+                    )
                 );
 
             $downloadManager
@@ -66,15 +68,16 @@ final class BuildLocalRepo extends BaseCommand
                     sprintf('%s/%s/%s', $input->getArgument('repo-dir'), $package->getName(), $package->getPrettyVersion()),
                 )
                 ->then(
-                    $output->writeln('Package has been installed correctly.')
+                    $output->writeln(
+                        sprintf('Package %s has been installed...', $package->getPrettyName())
+                    )
                 );
         }
 
-        $packageJson = new JsonFile(sprintf('%s/packages.json', $input->getArgument('repo-dir')));
-        $packageJson->write(['packages' => $packages]);
+        (new JsonFile(sprintf('%s/packages.json', $input->getArgument('repo-dir'))))->write(['packages' => $packages]);
 
         $output->writeln(
-            sprintf('Local composer repository has been created in %s', $input->getArgument('repo-dir'))
+            sprintf('Local composer repository has been successfully created in %s', $input->getArgument('repo-dir'))
         );
 
         return Command::SUCCESS;
@@ -83,7 +86,7 @@ final class BuildLocalRepo extends BaseCommand
     /**
      * @return Generator<int, CompletePackage>
      */
-    private function iterLockedPackages(): Generator
+    private function iterLockedPackages(InputInterface $input): Generator
     {
         $locker = $this->requireComposer(true, true)->getLocker();
 
@@ -98,8 +101,10 @@ final class BuildLocalRepo extends BaseCommand
             yield $loader->load($info);
         }
 
-        foreach ($data['packages-dev'] ?? [] as $info) {
-            yield $loader->load($info);
+        if (true === $input->getArgument('no-dev')) {
+            foreach ($data['packages-dev'] ?? [] as $info) {
+                yield $loader->load($info);
+            }
         }
     }
 }
