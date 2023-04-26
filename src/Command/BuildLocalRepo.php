@@ -22,7 +22,7 @@ final class BuildLocalRepo extends BaseCommand
             ->setName('build-local-repo')
             ->setDescription('Create local composer repositories for offline use')
             ->addArgument('repo-dir', InputArgument::REQUIRED, 'Target directory to create repo in')
-            ->addArgument('no-dev', InputArgument::OPTIONAL, 'Should we disable packages from `require-dev` ?', false);
+            ->addOption('no-dev', null, null, 'no-dev', 'Should we disable packages from `require-dev` ?', false);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -101,7 +101,7 @@ final class BuildLocalRepo extends BaseCommand
             yield $loader->load($info);
         }
 
-        if (true === $input->getArgument('no-dev')) {
+        if (true === $input->getOption('no-dev')) {
             foreach ($data['packages-dev'] ?? [] as $info) {
                 yield $loader->load($info);
             }
