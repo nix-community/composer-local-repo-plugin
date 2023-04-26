@@ -13,6 +13,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
 final class BuildLocalRepo extends BaseCommand
 {
@@ -22,7 +23,7 @@ final class BuildLocalRepo extends BaseCommand
             ->setName('build-local-repo')
             ->setDescription('Create local composer repositories for offline use')
             ->addArgument('repo-dir', InputArgument::REQUIRED, 'Target directory to create repo in')
-            ->addOption('no-dev', null, null, 'no-dev', 'Should we disable packages from `require-dev` ?', false);
+            ->addOption('no-dev', null, InputOption::VALUE_OPTIONAL, 'no-dev', 'Should we disable packages from `require-dev` ?', false);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
