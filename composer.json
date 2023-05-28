@@ -15,7 +15,19 @@
     },
     "autoload": {
         "psr-4": {
-            "NixCommunity\\ComposerLocalRepoPlugin\\": "./src/"
+            "NixCommunity\\ComposerLocalRepoPlugin\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "test\\NixCommunity\\ComposerLocalRepoPlugin\\": "test"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "phpstan/extension-installer": true,
+            "phpro/grumphp": true
         }
     },
     "extra": {
