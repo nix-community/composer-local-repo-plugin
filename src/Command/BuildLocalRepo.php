@@ -49,7 +49,7 @@ final class BuildLocalRepo extends BaseCommand
     {
         $io = $this->getIO();
         $composer = $this->requireComposer(true, true);
-        $locker = $this->requireComposer(true, true)->getLocker();
+        $locker = $composer->getLocker();
         $fs = new Filesystem();
 
         if (false === $locker->isLocked()) {
@@ -134,7 +134,7 @@ final class BuildLocalRepo extends BaseCommand
 
     private function await(Loop $loop, ?PromiseInterface $promise = null): void
     {
-        if ($promise) {
+        if (null !== $promise) {
             $loop->wait([$promise]);
         }
     }
@@ -201,7 +201,7 @@ final class BuildLocalRepo extends BaseCommand
      */
     private function downloadAndInstallPackageSync(Loop $loop, DownloadManager $downloadManager, string $path, PackageInterface $package, ?PackageInterface $prevPackage = null): void
     {
-        $type = $prevPackage ? 'update' : 'install';
+        $type = null === $prevPackage ? 'update' : 'install';
 
         try {
             $this->await($loop, $downloadManager->download($package, $path, $prevPackage));
