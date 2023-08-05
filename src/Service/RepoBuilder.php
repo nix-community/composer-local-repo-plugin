@@ -21,11 +21,22 @@ final class RepoBuilder extends LocalBuilder
         $downloadManager = $composer->getDownloadManager();
 
         foreach ($this->iterLockedPackages($composer->getLocker(), $includeDevDeps) as $packageInfo) {
+            $package = $loader->load($packageInfo);
+
+            // This is only required for packages of type 'metapackage'
+            // like `roave/security-advisories`.
+            // When type is 'metapackage', Composer is not able to get a
+            // Downloader and therefore, each Composer install or update
+            // operation requires the network to be enabled.
+            if ($package->getType() === 'metapackage') {
+                $package->setType('library');
+            }
+
             $this->downloadAndInstallPackageSync(
                 $loop,
                 $downloadManager,
                 sprintf('%s/%s/%s', $destinationDir, $packageInfo['name'], $packageInfo['version']),
-                $loader->load($packageInfo)
+                $package
             );
         }
     }
