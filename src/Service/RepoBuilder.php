@@ -30,6 +30,9 @@ final class RepoBuilder extends LocalBuilder
         }
     }
 
+    /**
+     * @param null|PromiseInterface<mixed> $promise
+     */
     private function await(Loop $loop, ?PromiseInterface $promise = null): void
     {
         if (null !== $promise) {
@@ -41,6 +44,8 @@ final class RepoBuilder extends LocalBuilder
      * Shamelessly copied from https://github.com/composer/composer/blob/52f6f74b7c342f7b90be9c1a87e183092e8ab452/src/Composer/Util/SyncHelper.php.
      *
      * Uses the `DownloaderManager` instead of a `Downloader` to download and install a package.
+     *
+     * TODO: this could be removed at the next version of Composer, see https://github.com/composer/composer/pull/11496
      */
     private function downloadAndInstallPackageSync(Loop $loop, DownloadManager $downloadManager, string $path, PackageInterface $package, ?PackageInterface $prevPackage = null): void
     {
