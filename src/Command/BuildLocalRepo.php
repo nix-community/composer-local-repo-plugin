@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace loophp\ComposerLocalRepoPlugin\Command;
+namespace NixCommunity\ComposerLocalRepoPlugin\Command;
 
 use Composer\Command\BaseCommand;
 use Composer\Util\Filesystem;
-use loophp\ComposerLocalRepoPlugin\Service\ManifestBuilder;
-use loophp\ComposerLocalRepoPlugin\Service\RepoBuilder;
+use NixCommunity\ComposerLocalRepoPlugin\Service\ManifestBuilder;
+use NixCommunity\ComposerLocalRepoPlugin\Service\RepoBuilder;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

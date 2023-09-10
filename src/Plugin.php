@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace loophp\ComposerLocalRepoPlugin;
+namespace NixCommunity\ComposerLocalRepoPlugin;
 
 use Composer\Composer;
 use Composer\IO\IOInterface;
 use Composer\Plugin\Capability\CommandProvider;
 use Composer\Plugin\Capable;
 use Composer\Plugin\PluginInterface;
-use loophp\ComposerLocalRepoPlugin\Command\BuildLocalRepo;
+use NixCommunity\ComposerLocalRepoPlugin\Command\BuildLocalRepo;
 
 final class Plugin implements PluginInterface, Capable, CommandProvider
 {

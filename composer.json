@@ -1,9 +1,9 @@
 {
-    "name": "drupol/composer-local-repo-plugin",
+    "name": "nix-community/composer-local-repo-plugin",
     "description": "A plugin for Composer which provides a command to create local Composer repository for your projects.",
     "license": "MIT",
     "type": "composer-plugin",
-    "homepage": "https://github.com/drupol/composer-local-repo-plugin",
+    "homepage": "https://github.com/nix-community/composer-local-repo-plugin",
     "require": {
         "php": "^8.0 || ^8.1",
         "composer-plugin-api": "^2"
@@ -13,10 +13,10 @@
     },
     "autoload": {
         "psr-4": {
-            "loophp\\ComposerLocalRepoPlugin\\": "./src/"
+            "NixCommunity\\ComposerLocalRepoPlugin\\": "./src/"
         }
     },
     "extra": {
-        "class": "loophp\\ComposerLocalRepoPlugin\\Plugin"
+        "class": "NixCommunity\\ComposerLocalRepoPlugin\\Plugin"
     }
 }

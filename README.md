@@ -27,7 +27,7 @@ This project has been heavily inspired of
 Install the plugin globally once:
 
 ```
-composer global require loophp/composer-local-repo-plugin
+composer global require nix-community/composer-local-repo-plugin
 ```
 
 ## Usage

@@ -46,8 +46,8 @@ repository:
     allow_rebase_merge: true
     allow_squash_merge: true
     default_branch: master
-    description: "A plugin for Composer that creates local repository of type `composer`."
-    homepage: https://github.com/drupol/composer-local-repo-plugin/
+    description: "A plugin for Composer that creates local repository of type `composer`. [maintainer=@drupol]"
+    homepage: https://github.com/nix-community/composer-local-repo-plugin/
     topics: plugin,repository,deployment,reproducibility,composer
     has_downloads: true
     has_issues: true

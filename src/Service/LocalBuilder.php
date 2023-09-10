@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace loophp\ComposerLocalRepoPlugin\Service;
+namespace NixCommunity\ComposerLocalRepoPlugin\Service;
 
 use Composer\Package\Locker;
 use Generator;
