@@ -9,7 +9,7 @@
         "composer-plugin-api": "^2"
     },
     "require-dev": {
-        "composer/composer": "^2.5"
+        "composer/composer": "^2.6"
     },
     "autoload": {
         "psr-4": {
