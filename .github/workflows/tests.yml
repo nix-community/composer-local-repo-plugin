@@ -52,5 +52,6 @@ jobs:
             - name: Install dependencies
               uses: ramsey/composer-install@v2
 
-            - name: Run Grumphp
-              run: vendor/bin/grumphp run --tasks=phpunit
+            - name: Run unit tests
+              working-directory: test
+              run: ../vendor/bin/phpunit
