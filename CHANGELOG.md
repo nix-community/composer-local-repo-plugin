@@ -5,10 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0](https://github.com/nix-community/composer-local-repo-plugin/compare/0.0.1...1.0.0)
+## [1.0.1](https://github.com/nix-community/composer-local-repo-plugin/compare/1.0.0...1.0.1)
 
 ### Commits
 
+- chore: PHP version required is now `^7` or `^8` [`d2d46bb`](https://github.com/nix-community/composer-local-repo-plugin/commit/d2d46bb56e0978429d5555fd9c7d78fcfbfab15c)
+
+## [1.0.0](https://github.com/nix-community/composer-local-repo-plugin/compare/0.0.1...1.0.0) - 2023-09-10
+
+### Commits
+
+- docs: add changelog [`e873024`](https://github.com/nix-community/composer-local-repo-plugin/commit/e873024da70a57fa390308e3f685db9169076018)
 - chore: add `auto-changelog` configuration file [`04d55e9`](https://github.com/nix-community/composer-local-repo-plugin/commit/04d55e946ba6cd9bb6bdae6e7e06fcba541aef9f)
 - ci: update actions, minor refactoring [`474e841`](https://github.com/nix-community/composer-local-repo-plugin/commit/474e841216d6c523c9f80b52fd67280b474b1ac7)
 - ci: update default branch name from `master` to `main` [`80ff998`](https://github.com/nix-community/composer-local-repo-plugin/commit/80ff998bd5fbe3b6fb843dc41233ea464eb57e22)
