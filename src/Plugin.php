@@ -20,7 +20,7 @@ final class Plugin implements PluginInterface, Capable, CommandProvider
     public function getCapabilities(): array
     {
         return [
-            'Composer\Plugin\Capability\CommandProvider' => self::class,
+            \Composer\Plugin\Capability\CommandProvider::class => self::class,
         ];
     }
 
