@@ -29,6 +29,7 @@ final class BuildLocalRepo extends BaseCommand
                     EOF
             )
             ->addArgument('repo-dir', InputArgument::REQUIRED, 'Target directory to create repository in, it must exist already.')
+            ->addArgument('dest-dir', InputArgument::OPTIONAL, 'Target directory to create repository manifest in, it must exist already.')
             ->addOption('no-dev', null, InputOption::VALUE_NONE, 'Skip development dependencies.')
             ->addOption('only-repo', 'r', InputOption::VALUE_NONE, 'Generate only the repository, without the manifest file "packages.json".')
             ->addOption('only-manifest', 'm', InputOption::VALUE_NONE, 'Generate only the manifest "packages.json", without the repository.')
@@ -53,6 +54,8 @@ final class BuildLocalRepo extends BaseCommand
         }
 
         $repoDir = $input->getArgument('repo-dir');
+        $destDir = $input->getArgument('dest-dir');
+
 
         if (false === is_dir($repoDir)) {
             $io->writeError(
@@ -158,7 +161,7 @@ final class BuildLocalRepo extends BaseCommand
                 $manifestBuilder->build(
                     $composer,
                     $repoDir,
-                    sprintf('%s/packages.json', $repoDir),
+                    sprintf('%s/packages.json', $destDir ?? $repoDir),
                     $includeDevDeps
                 );
             } catch (Throwable $exception) {
