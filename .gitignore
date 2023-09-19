@@ -6,3 +6,4 @@
 /composer.lock
 /test/.phpunit.cache/
 /.php_cs.cache
+/test/.phpunit.result.cache

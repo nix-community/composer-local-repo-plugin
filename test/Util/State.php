@@ -6,11 +6,19 @@ namespace test\NixCommunity\ComposerLocalRepoPlugin\Util;
 
 final class State
 {
+    private $directory;
+    private $composerJsonFile;
+    private $composerLockFile;
+
     private function __construct(
-        private Directory $directory,
-        private File $composerJsonFile,
-        private File $composerLockFile,
-    ) {}
+        Directory $directory,
+        File $composerJsonFile,
+        File $composerLockFile
+    ) {
+        $this->directory = $directory;
+        $this->composerJsonFile = $composerJsonFile;
+        $this->composerLockFile = $composerLockFile;
+    }
 
     public function composerJsonFile(): File
     {
@@ -33,12 +41,12 @@ final class State
             $directory,
             File::fromPath(sprintf(
                 '%s/composer.json',
-                $directory->path(),
+                $directory->path()
             )),
             File::fromPath(sprintf(
                 '%s/composer.lock',
-                $directory->path(),
-            )),
+                $directory->path()
+            ))
         );
     }
 }

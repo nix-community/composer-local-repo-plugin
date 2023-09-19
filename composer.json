@@ -5,13 +5,12 @@
     "type": "composer-plugin",
     "homepage": "https://github.com/nix-community/composer-local-repo-plugin",
     "require": {
-        "php": "^7 || ^8",
+        "php": ">= 7.2",
         "composer-plugin-api": "^2"
     },
     "require-dev": {
         "composer/composer": "^2.6",
-        "drupol/php-conventions": "^5.1",
-        "phpunit/phpunit": "^10.1"
+        "phpunit/phpunit": "^8"
     },
     "autoload": {
         "psr-4": {
@@ -23,19 +22,11 @@
             "test\\NixCommunity\\ComposerLocalRepoPlugin\\": "test"
         }
     },
-    "config": {
-        "allow-plugins": {
-            "ergebnis/composer-normalize": true,
-            "phpstan/extension-installer": true,
-            "phpro/grumphp": true
-        }
-    },
     "extra": {
         "class": "NixCommunity\\ComposerLocalRepoPlugin\\Plugin"
     },
     "scripts": {
         "changelog-unreleased": "auto-changelog -c .auto-changelog -u",
-        "changelog-version": "auto-changelog -c .auto-changelog -v",
-        "grumphp": "./vendor/bin/grumphp run"
+        "changelog-version": "auto-changelog -c .auto-changelog -v"
     }
 }

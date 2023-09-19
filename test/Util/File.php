@@ -10,18 +10,26 @@ use function is_string;
 
 final class File
 {
+    private $contents;
+    private $path;
+    private $exists;
+
     private function __construct(
-        private string $path,
-        private bool $exists,
-        private ?string $contents,
-    ) {}
+        string $path,
+        bool $exists,
+        ?string $contents
+    ) {
+        $this->path = $path;
+        $this->exists = $exists;
+        $this->contents = $contents;
+    }
 
     public function contents(): string
     {
         if (false === $this->exists || null === $this->contents) {
             throw new BadMethodCallException(sprintf(
                 'File at "%s" did not exist or was not readable at the time of creation.',
-                $this->path,
+                $this->path
             ));
         }
 
@@ -39,7 +47,7 @@ final class File
             return new self(
                 $path,
                 false,
-                null,
+                null
             );
         }
 
@@ -49,14 +57,14 @@ final class File
             return new self(
                 $path,
                 true,
-                null,
+                null
             );
         }
 
         return new self(
             $path,
             true,
-            $contents,
+            $contents
         );
     }
 

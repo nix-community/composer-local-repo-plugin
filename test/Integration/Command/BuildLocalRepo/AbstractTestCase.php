@@ -30,7 +30,7 @@ use const JSON_UNESCAPED_SLASHES;
  */
 abstract class AbstractTestCase extends Framework\TestCase
 {
-    private string $currentWorkingDirectory;
+    private $currentWorkingDirectory;
 
     final protected function setUp(): void
     {
@@ -77,14 +77,14 @@ abstract class AbstractTestCase extends Framework\TestCase
 
     final protected static function assertComposerJsonFileModified(
         State $expected,
-        State $actual,
+        State $actual
     ): void {
         self::assertComposerJsonFileExists($actual);
 
         self::assertNotEquals(
             $expected->composerJsonFile()->contents(),
             $actual->composerJsonFile()->contents(),
-            'Failed asserting that initial composer.json has been modified.',
+            'Failed asserting that initial composer.json has been modified.'
         );
     }
 
@@ -102,20 +102,20 @@ abstract class AbstractTestCase extends Framework\TestCase
 
         self::assertSame(0, $exitCode, sprintf(
             'Failed asserting that composer.lock is fresh in %s.',
-            $state->directory()->path(),
+            $state->directory()->path()
         ));
     }
 
     final protected static function assertComposerLockFileModified(
         State $expected,
-        State $actual,
+        State $actual
     ): void {
         self::assertComposerLockFileExists($actual);
 
         self::assertJsonStringNotEqualsJsonString(
             self::normalizeLockFileContents($expected->composerLockFile()->contents()),
             self::normalizeLockFileContents($actual->composerLockFile()->contents()),
-            'Failed asserting that initial composer.lock has been modified.',
+            'Failed asserting that initial composer.lock has been modified.'
         );
     }
 
@@ -133,31 +133,31 @@ abstract class AbstractTestCase extends Framework\TestCase
 
         self::assertNotSame(0, $exitCode, sprintf(
             'Failed asserting that composer.lock is not fresh in %s.',
-            $state->directory()->path(),
+            $state->directory()->path()
         ));
     }
 
     final protected static function assertComposerLockFileNotModified(
         State $expected,
-        State $actual,
+        State $actual
     ): void {
         self::assertComposerLockFileExists($actual);
 
         self::assertJsonStringEqualsJsonString(
             self::normalizeLockFileContents($expected->composerLockFile()->contents()),
             self::normalizeLockFileContents($actual->composerLockFile()->contents()),
-            'Failed asserting that initial composer.lock has not been modified.',
+            'Failed asserting that initial composer.lock has not been modified.'
         );
     }
 
     final protected static function assertExitCodeSame(
         int $expected,
-        int $actual,
+        int $actual
     ): void {
         self::assertSame($expected, $actual, sprintf(
             'Failed asserting that exit code %d is identical to %d.',
             $actual,
-            $expected,
+            $expected
         ));
     }
 
@@ -176,12 +176,12 @@ abstract class AbstractTestCase extends Framework\TestCase
 
     final protected static function createScenario(
         CommandInvocation $commandInvocation,
-        string $fixtureDirectory,
+        string $fixtureDirectory
     ): Scenario {
         if (!is_dir($fixtureDirectory)) {
             throw new InvalidArgumentException(sprintf(
                 'Fixture directory "%s" does not exist',
-                $fixtureDirectory,
+                $fixtureDirectory
             ));
         }
 
@@ -191,14 +191,14 @@ abstract class AbstractTestCase extends Framework\TestCase
 
         $fileSystem->mirror(
             $fixtureDirectory,
-            self::temporaryDirectory(),
+            self::temporaryDirectory()
         );
 
         $fileSystem->mkdir(self::temporaryRepoDirectory());
 
         $scenario = Scenario::fromCommandInvocationAndInitialState(
             $commandInvocation,
-            State::fromDirectory(Directory::fromPath(self::temporaryDirectory())),
+            State::fromDirectory(Directory::fromPath(self::temporaryDirectory()))
         );
 
         if ($commandInvocation->is(CommandInvocation::inCurrentWorkingDirectory())) {
@@ -217,14 +217,14 @@ abstract class AbstractTestCase extends Framework\TestCase
     {
         $decoded = json_decode(
             $contents,
-            true,
+            true
         );
 
         unset($decoded['plugin-api-version']);
 
         $normalized = json_encode(
             $decoded,
-            JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_PRESERVE_ZERO_FRACTION,
+            JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_PRESERVE_ZERO_FRACTION
         );
 
         if (!is_string($normalized)) {
@@ -251,7 +251,7 @@ abstract class AbstractTestCase extends Framework\TestCase
                 '--no-check-publish' => true,
                 '--working-dir' => $state->directory()->path(),
             ]),
-            new Console\Output\BufferedOutput(),
+            new Console\Output\BufferedOutput()
         );
     }
 }

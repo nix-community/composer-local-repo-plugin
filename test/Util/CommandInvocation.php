@@ -6,7 +6,15 @@ namespace test\NixCommunity\ComposerLocalRepoPlugin\Util;
 
 final class CommandInvocation
 {
-    private function __construct(private string $style) {}
+
+    /**
+     * @var string
+     */
+    private $style;
+
+    private function __construct(string $style = '') {
+        $this->style = $style;
+    }
 
     public static function inCurrentWorkingDirectory(): self
     {

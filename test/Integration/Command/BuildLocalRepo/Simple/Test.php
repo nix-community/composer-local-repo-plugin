@@ -7,6 +7,7 @@ namespace test\NixCommunity\ComposerLocalRepoPlugin\Integration\Command\BuildLoc
 use Symfony\Component\Console;
 use test\NixCommunity\ComposerLocalRepoPlugin\Integration\Command\BuildLocalRepo\AbstractTestCase;
 use test\NixCommunity\ComposerLocalRepoPlugin\Util;
+use test\NixCommunity\ComposerLocalRepoPlugin\Util\CommandInvocation;
 
 /**
  * @internal
@@ -19,11 +20,11 @@ final class Test extends AbstractTestCase
      * @dataProvider \test\NixCommunity\ComposerLocalRepoPlugin\DataProvider\Command\BuildLocalRepoProvider::simpleCommandInvocation
      */
     public function testSucceeds(
-        Util\CommandInvocation $commandInvocation
+        CommandInvocation $commandInvocation
     ): void {
         $scenario = self::createScenario(
             $commandInvocation,
-            __DIR__ . '/fixture',
+            __DIR__ . '/fixture'
         );
 
         $initialState = $scenario->initialState();
@@ -37,7 +38,7 @@ final class Test extends AbstractTestCase
 
         $input = new Console\Input\ArrayInput(
             $scenario->consoleParameters() + [
-                'repo-dir' => $tempDir,
+                'repo-dir' => $tempDir
             ]
         );
         $output = new Console\Output\BufferedOutput();
@@ -107,7 +108,7 @@ final class Test extends AbstractTestCase
             true
         );
 
-        self::assertCount(26, $packages['packages']);
+        self::assertCount(23, $packages['packages']);
 
         foreach ($packages['packages'] as $versionPackage) {
             $package = current($versionPackage);

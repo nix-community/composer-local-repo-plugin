@@ -6,10 +6,19 @@ namespace test\NixCommunity\ComposerLocalRepoPlugin\Util;
 
 final class Directory
 {
-    private bool $exists;
+    /**
+     * @var bool
+     */
+    private $exists;
 
-    private function __construct(private string $path)
+    /**
+     * @var string
+     */
+    private $path;
+
+    private function __construct(string $path = '')
     {
+        $this->path = $path;
         $this->exists = file_exists($path) && is_dir($path);
     }
 

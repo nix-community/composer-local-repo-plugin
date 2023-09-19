@@ -6,10 +6,17 @@ namespace test\NixCommunity\ComposerLocalRepoPlugin\Util;
 
 final class Scenario
 {
+    private $commandInvocation;
+
+    private $initialState;
+
     private function __construct(
-        private CommandInvocation $commandInvocation,
-        private State $initialState,
-    ) {}
+        CommandInvocation $commandInvocation,
+        State $initialState
+    ) {
+        $this->commandInvocation = $commandInvocation;
+        $this->initialState = $initialState;
+    }
 
     public function commandInvocation(): CommandInvocation
     {
@@ -43,7 +50,7 @@ final class Scenario
     {
         return array_merge(
             $this->consoleParameters(),
-            $parameters,
+            $parameters
         );
     }
 
@@ -59,11 +66,11 @@ final class Scenario
 
     public static function fromCommandInvocationAndInitialState(
         CommandInvocation $commandInvocation,
-        State $initialState,
+        State $initialState
     ): self {
         return new self(
             $commandInvocation,
-            $initialState,
+            $initialState
         );
     }
 
