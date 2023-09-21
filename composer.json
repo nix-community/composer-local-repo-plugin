@@ -4,6 +4,12 @@
     "license": "MIT",
     "type": "composer-plugin",
     "homepage": "https://github.com/nix-community/composer-local-repo-plugin",
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/drupol"
+        }
+    ],
     "require": {
         "php": ">= 7.2",
         "composer-plugin-api": "^2"
