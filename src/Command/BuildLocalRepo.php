@@ -23,10 +23,10 @@ final class BuildLocalRepo extends BaseCommand
             ->setName('build-local-repo')
             ->setDescription(
                 <<<'EOF'
-                    Create local repositories with type "composer" for offline use.
-                      This command will create a repository in a given existing directory.
-                      By default, the repository and its manifest file "packages.json" will be created in the same target directory.
-                    EOF
+Create local repositories with type "composer" for offline use.
+  This command will create a repository in a given existing directory.
+  By default, the repository and its manifest file "packages.json" will be created in the same target directory.
+EOF
             )
             ->addArgument('repo-dir', InputArgument::REQUIRED, 'Target directory to create repository in, it must exist already.')
             ->addArgument('dest-dir', InputArgument::OPTIONAL, 'Target directory to create repository manifest in, it must exist already.')
