@@ -5,7 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.2](https://github.com/nix-community/composer-local-repo-plugin/compare/1.0.1...1.0.2)
+## [1.0.3](https://github.com/nix-community/composer-local-repo-plugin/compare/1.0.2...1.0.3)
+
+### Merged
+
+- ci: do not run test on PHP &lt; 8.0 [`#3`](https://github.com/nix-community/composer-local-repo-plugin/pull/3)
+
+### Commits
+
+- chore: update composer.json [`18d02e9`](https://github.com/nix-community/composer-local-repo-plugin/commit/18d02e9ddd1f16c9809bb2734407c58218f3cb72)
+- refactor: ^7.2.5 || ^8.0 [`d136cf8`](https://github.com/nix-community/composer-local-repo-plugin/commit/d136cf8bcdea04f710826614b311f1a979d7cf97)
+
+## [1.0.2](https://github.com/nix-community/composer-local-repo-plugin/compare/1.0.1...1.0.2) - 2023-09-18
 
 ### Merged
 
@@ -13,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Commits
 
+- docs: update CHANGELOG [`3588ac3`](https://github.com/nix-community/composer-local-repo-plugin/commit/3588ac3b412b899269f8f91664c0b6c020b497e6)
 - fix: add optional destination directory argument to avoid using bash pipes [`562d644`](https://github.com/nix-community/composer-local-repo-plugin/commit/562d6441f9180c1db266e006bedb3d65bdd88034)
 
 ## [1.0.1](https://github.com/nix-community/composer-local-repo-plugin/compare/1.0.0...1.0.1) - 2023-09-17
